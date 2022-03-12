@@ -2,20 +2,73 @@
 <html>
 	<head>
 		<title>SABERGUST!</title>
-		<link href="https://fonts.googleapis.com/css?family=Chivo:900" rel="stylesheet" type="text/css">
+
+		<!-- fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Chivo:900" rel="stylesheet" type="text/css"></link>
+		<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet" type="text/css"></link>
 		
-		<link href="https://ronenness.github.io/RPGUI/stylesheets/stylesheet.css" rel="stylesheet" type="text/css" >
-		<link href="https://ronenness.github.io/RPGUI/stylesheets/github-dark.css" rel="stylesheet" type="text/css" >
-		<link href="https://ronenness.github.io/RPGUI/stylesheets/print.css" rel="stylesheet" type="text/css" >
-		<link href="https://ronenness.github.io/RPGUI/rpgui/rpgui.css" rel="stylesheet" type="text/css" >
+		<!-- RPGUI css -->
+		<link href="https://voltron42.github.io/flair/rpgui_redux/buttons.css" rel="stylesheet" type="text/css"></link>
+		<link href="https://voltron42.github.io/flair/rpgui_redux/content.css" rel="stylesheet" type="text/css"></link>
+		<link href="https://voltron42.github.io/flair/rpgui_redux/cursors.css" rel="stylesheet" type="text/css"></link>
+		<link href="https://voltron42.github.io/flair/rpgui_redux/frames.css" rel="stylesheet" type="text/css"></link>
+		<link href="https://voltron42.github.io/flair/rpgui_redux/hr.css" rel="stylesheet" type="text/css"></link>
+		<link href="https://voltron42.github.io/flair/rpgui_redux/icons.css" rel="stylesheet" type="text/css"></link>
+		<link href="https://voltron42.github.io/flair/rpgui_redux/paraheader.css" rel="stylesheet" type="text/css"></link>
+		<link href="https://voltron42.github.io/flair/rpgui_redux/scroll.css" rel="stylesheet" type="text/css"></link>
+		<link href="https://voltron42.github.io/flair/rpgui_redux/webkitscrollbar.css" rel="stylesheet" type="text/css"></link>
+		
+		<!-- font-awesome icons -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
+		<!-- bootstrap -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"></link>
+		
+		<!-- rpgui.js -->
 		<script src="https://ronenness.github.io/RPGUI/rpgui/rpgui.js"></script>
+		
 	</head>
-	<body>
-		<div class="rpgui-content">
-			<div class="container">
-				<div id="main"></div>
-				<div class="inner rpgui-container framed">
-					<h1>Subscribe to <a href="https://www.youtube.com/channel/UCCpcGXc25_GgZ6Qe8dt6nkw">SABERGUST!</a></h1>
+	<body class="bg-secondary">
+		<div class="rpgui-content rpgui-cursor-default pl-5 pr-5 pt-3 pb-3" style="overflow-y:scroll;">
+			<div class="inner rpgui-container framed d-flex flex-column">
+				<div class="p-4 text-center"><p class="pt-4" style="font-size: 3em;">SABERGUST!</p></div>
+				<header>
+					<hr class="golden"></hr>
+				</header>
+				<div class="p-4">
+					<div class="rpgui-container framed-grey p-4">
+						<div class="row p-4">
+							<div class="rpgui-container framed rpgui-center col-12 col-sm d-flex align-items-center justify-content-center">
+								<div class="rpgui-container framed-grey d-flex flex-column embed-responsive embed-responsive-16by9">
+									<iframe class="embed-responsive-item align-middle" src="https://www.youtube.com/embed/ssyWYC3wdr4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+								</div>
+							</div>
+							<div class="p-4"><!-- buffer --></div>
+							<div class="rpgui-container framed-golden-2 rpgui-center col-12 col-sm d-flex align-items-center justify-content-center">
+								<div class="d-flex flex-column">
+									<h3 class="">Check us out on</h3>
+									<a href="https://www.youtube.com/embed/ssyWYC3wdr4" class="text-center align-middle" target="_blank">
+										<i class="fa fa-youtube-square text-danger display-1"></i>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="row p-4">
+							<div class="rpgui-container framed-golden-2 rpgui-center col-12 col-sm d-flex align-items-center justify-content-center">
+								<div class="d-flex flex-column">
+									<h3 class="text-center">Play Our Game</h3>
+								</div>
+							</div>
+							<div class="p-4"><!-- buffer --></div>
+							<div class="rpgui-container framed rpgui-center col-12 col-sm text-center d-flex align-items-center justify-content-center">
+								<div class="rpgui-container framed-grey d-flex flex-column">
+									<span>LEGEND</span>
+									<span>OF THE</span>
+									<span>WALKER</span>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
