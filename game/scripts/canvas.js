@@ -1,4 +1,4 @@
-namespace("Canvas",{},() => {
+namespace("Canvas",["BoundsBox"],(ns) => {
 	
 	return function(width, height) {
 
@@ -14,7 +14,9 @@ namespace("Canvas",{},() => {
 
 		this.drawShape = ((shape) => shape.drawOn(context));
 		
-		this.getBounds = (() => [[0,0],[width,height]]);
+		this.outlineShape = ((shape) => shape.drawOn(context,true));
+		
+		this.getBounds = (() => new ns.BoundsBox(0,0,width,height));
 	}
 
 });

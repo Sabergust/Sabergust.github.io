@@ -1,8 +1,10 @@
-namespace("Polygon",{},() => {
+namespace("Polygon",["BoundsBox"],(ns) => {
 	return function(color,points) {
 
-		this.drawOn = (context) => {
+		this.drawOn = (context,stroke) => {
 			context.fillStyle = color;
+			context.strokeStyle = color;
+			context.lineWidth = 2;
 			context.beginPath();
 			points.forEach((p,i) => {
 				if (i == 0) {
@@ -12,7 +14,11 @@ namespace("Polygon",{},() => {
 				}
 			});
 			context.closePath();
-			context.fill();
+			if (stroke) {
+				context.stroke();
+			} else {
+				context.fill();
+			}
 		}
 
 		this.translate = ((x1,y1) => {
@@ -29,7 +35,7 @@ namespace("Polygon",{},() => {
 			let maxX = Math.max.apply(null,xs);
 			let minY = Math.min.apply(null,ys);
 			let maxY = Math.max.apply(null,ys);
-			return [[minX,minY],[maxX,maxY]];
+			return new ns.BoundsBox(minX,minY,maxX,maxY);
 		});
 	}
 });

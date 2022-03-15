@@ -1,9 +1,15 @@
-namespace("Rectangle",{},() => {
+namespace("Rectangle",["BoundsBox"],(ns) => {
 	return function(x,y,width,height,color) {
 
-		this.drawOn = ((context) => {
+		this.drawOn = ((context,stroke) => {
 			context.fillStyle = color;
-			context.fillRect(x,y,width,height);
+			context.strokeStyle = color;
+			context.lineWidth = 2;
+			if (stroke) {
+				context.strokeRect(x,y,width,height);
+			} else {
+				context.fillRect(x,y,width,height);
+			}
 		});
 
 		this.translate = ((x1,y1) => {
@@ -11,7 +17,7 @@ namespace("Rectangle",{},() => {
 			y += y1;
 		});
 
-		this.getBounds = (() => [[x,y],[x+width,y+height]]);
+		this.getBounds = (() => new ns.BoundsBox(x,y,x+width,y+height));
 
 	}
 });
