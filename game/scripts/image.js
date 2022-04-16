@@ -27,7 +27,7 @@ namespace("Image",["BoundsBox"],(ns) => {
       y += y1;
     });
     
-    this.getBounds = (() => new ns.BoundsBox(x,y,x+width,y+height));
+    this.getBounds = (() => ns.BoundsBox.fromRect(x,y,width,height));
     
   }
 });

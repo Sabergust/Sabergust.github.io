@@ -19,7 +19,19 @@ namespace("Circle",["BoundsBox"],(ns) => {
       cy += y1;
     });
     
-    this.getBounds = (() => new ns.BoundsBox(cx - r, cy - r, cx + r, cy + r));
+    this.getBounds = (() => new ns.BoundsBox.fromCirc(cx,cy,r));
+    
+    let moveToHandlers = {
+      top: (moveTo) => { cy = moveTo + r; },
+      left: (moveTo) => { cx = moveTo + r; },
+      bottom: (moveTo) => { cy = moveTo - r; },
+      right: (moveTo) => { cx = moveTo - r; },
+    };
+
+    this.moveSideTo = function(side,moveTo) {
+      moveToHandlers[side](moveTo)
+    };
+
     
   }
 });

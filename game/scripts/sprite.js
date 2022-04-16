@@ -21,7 +21,6 @@ namespace("Sprite",{},() => {
           } else if (dir.indexOf("E")>-1) {
             moveX = 1;
           }
-          console.log({dir:dir,moveX:moveX,moveY:moveY});
           return;
         case "number":
           moveX = Math.sin(Math.PI * 2 * dir / 360);
@@ -60,7 +59,7 @@ namespace("Sprite",{},() => {
 
     this.getBounds = (() => shape.getBounds());
     
-    this.moveTo = ((side,moveTo) => { shape.moveTo(side,moveTo); });
+    this.moveTo = ((side,moveTo) => { shape.moveSideTo(side,moveTo); });
     
     this.drawOn = ((canvas) => { canvas.drawShape(shape); });
     

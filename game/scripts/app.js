@@ -30,22 +30,22 @@ namespace("App",[
       flushTop: (s,t) => {
         t.stopVert();
         let [minX,minY,maxX,maxY] = s.getBounds().getArgs();
-        t.moveTo("top",minY + 1);
+        t.moveTo("top",maxY + 1);
       },
       flushLeft: (s,t) => {
         t.stopHoriz();
         let [minX,minY,maxX,maxY] = s.getBounds().getArgs();
-        t.moveTo("left",minx + 1);
+        t.moveTo("left",maxX + 1);
       },
       flushBottom: (s,t) => {
         t.stopVert();
         let [minX,minY,maxX,maxY] = s.getBounds().getArgs();
-        t.moveTo("bottom",maxY - 1);
+        t.moveTo("bottom",minY - 1);
       },
       flushRight: (s,t) => {
         t.stopHoriz();
         let [minX,minY,maxX,maxY] = s.getBounds().getArgs();
-        t.moveTo("right",maxX - 1);
+        t.moveTo("right",minX - 1);
       },
       exit: () => { 
         clearInterval(interval);
@@ -88,33 +88,36 @@ namespace("App",[
       sprites[name] = new ns.Sprite(shapes[spec.shift()](spec),speed);
     });
     
-    let collisions = [["northWallEast","player","flushTop"],
-     ["northWallEast","bumper","bounceDown"],
-     ["northWallWest","player","flushTop"],
-     ["northWallWest","bumper","bounceDown"],
-     ["southWallEast","player","flushbottom"],
-     ["southWallEast","bumper","bounceUp"],
-     ["southWallWest","player","flushbottom"],
-     ["southWallWest","bumper","bounceUp"],
-     ["westWallNorth","player","flushLeft"],
-     ["westWallNorth","bumper","bounceRight"],
-     ["westWallSouth","player","flushLeft"],
-     ["westWallSouth","bumper","bounceRight"],
-     ["eastWallNorth","player","flushRight"],
-     ["eastWallNorth","bumper","bounceLeft"],
-     ["eastWallSouth","player","flushRight"],
-     ["eastWallSouth","bumper","bounceLeft"],
-     ["northDoor","bumper","bounceDown"],
-     ["southDoor","bumper","bounceUp"],
-     ["westDoor","bumper","bounceRight"],
-     ["eastDoor","bumper","bounceLeft"],
-     ["northExit","player","exit"],
-     ["southExit","player","exit"],
-     ["westExit","player","exit"],
-     ["eastExit","player","exit"],
-     ["bumper","player","bounceBack"]
-    ].map(([source,target,onCollide]) => {
-      return new ns.Collision(sprites[source],sprites[target],collide[onCollide]);
+    let collideTypes = {};
+    
+    let collisions = [["northWallEast","box","player","ball","flushTop"],
+                      ["northWallEast","box","bumper","ball","bounceDown"],
+                      ["northWallWest","box","player","ball","flushTop"],
+                      ["northWallWest","box","bumper","ball","bounceDown"],
+                      ["southWallEast","box","player","ball","flushBottom"],
+                      ["southWallEast","box","bumper","ball","bounceUp"],
+                      ["southWallWest","box","player","ball","flushBottom"],
+                      ["southWallWest","box","bumper","ball","bounceUp"],
+                      ["westWallNorth","box","player","ball","flushLeft"],
+                      ["westWallNorth","box","bumper","ball","bounceRight"],
+                      ["westWallSouth","box","player","ball","flushLeft"],
+                      ["westWallSouth","box","bumper","ball","bounceRight"],
+                      ["eastWallNorth","box","player","ball","flushRight"],
+                      ["eastWallNorth","box","bumper","ball","bounceLeft"],
+                      ["eastWallSouth","box","player","ball","flushRight"],
+                      ["eastWallSouth","box","bumper","ball","bounceLeft"],
+                      ["northDoor","box","bumper","ball","bounceDown"],
+                      ["southDoor","box","bumper","ball","bounceUp"],
+                      ["westDoor","box","bumper","ball","bounceRight"],
+                      ["eastDoor","box","bumper","ball","bounceLeft"],
+                      ["northExit","box","player","ball","exit"],
+                      ["southExit","box","player","ball","exit"],
+                      ["westExit","box","player","ball","exit"],
+                      ["eastExit","box","player","ball","exit"],
+                      ["bumper","ball","player","ball","bounceBack"]
+    ].map(([source,sourceType,target,targetType,onCollide]) => {
+      
+      return new ns.Collision(sprites[source],sourceType,sprites[target],targetType,collide[onCollide]);
     });
     
     let drawAll = (() => {
@@ -132,7 +135,9 @@ namespace("App",[
       canvas.clear();
       sprites.bumper.step()
       sprites.player.step()
-      
+      collisions.forEach((c) => {
+        c.check();
+      });
       drawAll();
     }
     
@@ -141,8 +146,8 @@ namespace("App",[
       canvas.appendToElement(frame);
       sprites.player.setAsPlayer();
       sprites.bumper.setDirection("NE");
-      drawAll();
-      interval = setInterval(update, 20);
+      //drawAll();
+      //interval = setInterval(update, 20);
       return this;
     }
     

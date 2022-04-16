@@ -17,14 +17,15 @@ namespace("Rectangle",["BoundsBox"],(ns) => {
       y += y1;
     });
 
-    this.getBounds = (() => new ns.BoundsBox(x,y,x+width,y+height));
+    this.getBounds = (() => new ns.BoundsBox.fromRect(x,y,width,height));
     
-      let moveToHandlers = {
+    let moveToHandlers = {
       top: (moveTo) => { y = moveTo; },
       left: (moveTo) => { x = moveTo; },
       bottom: (moveTo) => { y = moveTo - height; },
       right: (moveTo) => { x = moveTo - width; },
     };
+    
     this.moveSideTo = function(side,moveTo) {
       moveToHandlers[side](moveTo)
     };
